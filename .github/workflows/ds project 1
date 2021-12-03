@@ -1,0 +1,1157 @@
+#include<iostream>
+
+#include<cstring>
+
+#include<cstdlib>
+
+#include<iomanip>
+
+#include<windows.h>
+
+
+#include<dos.h>
+
+#include<conio.h>
+
+#include<cstdio>
+
+#define max 30
+
+using namespace std;
+
+struct employee
+
+{
+
+    char name[30];
+
+    long int code;
+
+    char designation[30];
+
+    int exp;
+
+    int salary;
+
+};
+
+int num;
+
+employee emp[max], tempemp[max], sortemp[max], sortemp1[max];
+
+int main()
+
+{
+
+    system("cls");
+
+    void build();
+
+    void list();
+
+    void insert();
+
+    void deletes();
+
+    void edit();
+
+    void search();
+
+    void sort();
+
+    char option;
+
+    void menu();
+
+    menu();
+
+    while ((option = cin.get()) != 'q')
+
+    {
+
+        switch (option)
+
+        {
+
+        case '1':
+
+            build();
+
+            break;
+
+        case '2':
+
+            list();
+
+            break;
+
+        case '3':
+
+            insert();
+
+            break;
+
+        case '4':
+
+            deletes();
+
+            break;
+
+        case '5':
+
+            edit();
+
+            break;
+
+        case '6':
+
+            search();
+
+            break;
+
+        case '7':
+
+            sort();
+
+            break;
+
+        }
+
+        menu();
+
+    }
+
+    return 0;
+
+}
+
+void menu()
+
+{
+
+    system("cls");
+
+   
+
+    cout << "          ";
+
+    printf("\n\t\t*****  Employees/Salary Management System ***** ");
+
+
+
+    
+
+    cout << endl;
+
+    cout << "             ";
+
+    cout << "\n\t\t Input  1---->Built The Employee Table ";
+
+    cout << "             ";
+
+    cout << "\n\t\t Input  2---->List The Employee Table  ";
+
+    cout << "             ";
+
+    cout << "\n\t\t Input  3---->Insert New Entry        ";
+
+    cout << "             ";
+
+    cout << "\n\t\t Input  4---->Delete an Entry         ";
+
+    cout << "             ";
+
+    cout << "\n\t\t Input  5---->Edit an Entry           ";
+
+    cout << "             ";
+
+    cout << "\n\t\t Input  6---->Search a record          ";
+
+    cout << "             ";
+
+    cout << "\n\t\t input  7---->Sort the Table          ";
+
+    cout << "             ";
+
+    cout << "\n\t\t input  q---------->Quit Program              ";
+
+    cout << "             ";
+
+    cout << "\n\n \t\t Select Your Option Please ====> ";
+
+}
+
+
+void build()
+
+{
+
+
+    system("cls");
+
+   
+
+    printf("Build The Table");
+
+    cout << endl;
+
+ 
+
+    cout << "maximum number of entries  -----  >  30" << endl;
+
+    cout << "how many do you want    ----->";
+
+    cin >> num;
+
+    cout << "Enter The Following Items" << endl;
+
+    for (int i = 0; i <= num - 1; i++)
+
+    {
+
+        cout << " Name  ";
+
+        cin >> emp[i].name;
+
+        cout << "Code  ";
+
+        cin >> emp[i].code;
+
+        cout << "Designation  ";
+
+        cin >> emp[i].designation;
+
+        cout << "Years of Experience  ";
+
+        cin >> emp[i].exp;
+
+        cout << "Salary  ";
+
+        cin >> emp[i].salary;
+
+    }
+
+    cout << "going to main menu";
+
+    Sleep(500);
+
+}
+
+
+void  list()
+
+{
+
+    system("cls");
+
+    
+
+    printf("       ********List The Table********");
+
+    cout << endl;
+
+  
+
+    cout << "     Name     Code     Designation     Years(EXP)     Salary " << endl;
+
+    cout << "    ------------------------------------------------------" << endl;
+
+    for (int i = 0; i <= num - 1; i++)
+
+    {
+
+        cout << setw(13) << emp[i].name;
+
+        cout << setw(6) << emp[i].code;
+
+        cout << setw(15) << emp[i].designation;
+
+        cout << setw(10) << emp[i].exp;
+
+        cout << setw(15) << emp[i].salary;
+
+        cout << endl;
+
+    }
+
+    cout << "going to main menu";
+
+    _getch();
+
+}
+
+void insert()
+
+{
+
+    system("cls");
+
+    int i = num;
+
+    num += 1;
+
+  
+
+    printf("Insert New Record");
+
+    cout << endl;
+
+
+
+    cout << "Enter The Following Items" << endl;
+
+    cout << "Name  ";
+
+    cin >> emp[i].name;
+
+    cout << "Code  ";
+
+    cin >> emp[i].code;
+
+    cout << "Designation  ";
+
+    cin >> emp[i].designation;
+
+    cout << "Years of Experience  ";
+
+    cin >> emp[i].exp;
+
+    cout << "Salary  ";
+
+    cin >> emp[i].salary;
+
+    cout << endl << endl;
+
+    cout << "going to main menu";
+
+    Sleep(500);
+
+
+}
+
+
+
+void deletes()
+
+{
+
+    system("cls");
+
+  
+
+    int code;
+    int check;
+
+    printf("Delete An Entry");
+
+  
+
+    cout << endl;
+
+    cout << "Enter An JobCode To Delete That Entry  ";
+
+    cin >> code;
+
+    int i;
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        if (emp[i].code == code)
+
+        {
+
+            check = i;
+
+        }
+
+    }
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        if (i == check)
+
+        {
+
+            continue;
+
+        }
+
+        else
+
+        {
+
+            if (i > check)
+
+            {
+
+                tempemp[i - 1] = emp[i];
+
+            }
+
+            else
+
+            {
+
+                tempemp[i] = emp[i];
+
+            }
+
+        }
+
+    }
+
+    num--;
+
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        emp[i] = tempemp[i];
+
+    }
+
+}
+
+
+void edit()
+
+{
+
+    system("cls");
+
+    int jobcode;
+
+    
+
+    printf("          Edit An Entry           ");
+
+    cout << endl;
+
+    cout << endl;
+
+    int i;
+
+    void editmenu();
+
+    void editname(int);
+
+    void editcode(int);
+
+    void editdes(int);
+
+    void editexp(int);
+
+    void editsalary(int);
+
+    char option;
+
+   
+
+    cout << "Enter An jobcode To Edit An Entry----  ";
+
+    cin >> jobcode;
+
+    editmenu();
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        if (emp[i].code == jobcode)
+
+        {
+
+
+            while ((option = cin.get()) != 'q')
+
+            {
+
+                switch (option)
+
+                {
+
+                case 'n':
+
+                    editname(i);
+
+                    break;
+
+                case 'c':
+
+                    editcode(i);
+
+                    break;
+
+                case 'd':
+
+                    editdes(i);
+
+                    break;
+
+                case 'e':
+
+                    editexp(i);
+
+                    break;
+
+                case 'a':
+
+                    editsalary(i);
+
+                    break;
+
+                }
+
+                editmenu();
+
+            }
+
+        }
+
+    }
+
+}
+
+void editmenu()
+
+{
+
+    system("cls");
+
+    cout << "        What Do You Want To edit"<<endl;
+
+    cout << "          n--------->Name "<<endl;
+
+    cout << "          c--------->Code "<<endl;
+
+    cout << "          d--------->Designation"<<endl;
+
+    cout << "          e--------->Experience "<<endl;
+
+    cout << "          a--------->Salary     "<<endl;
+
+    cout << "              q----->QUIT       "<<endl;
+
+    cout << "   Options Please ---->>>  "<<endl;
+
+}
+
+void editname(int i)
+
+{
+
+    cout << "Enter New Name----->  ";
+
+    cin >> emp[i].name;
+
+}
+
+void editcode(int i)
+
+{
+
+    cout << "Enter New Job Code----->  ";
+
+    cin >> emp[i].code;
+
+}
+
+void editdes(int i)
+
+{
+
+    cout << "enter new designation----->  ";
+
+    cin >> emp[i].designation;
+
+}
+
+void editexp(int i)
+
+{
+
+    cout << "Enter new Years of Experience";
+
+    cin >> emp[i].exp;
+
+}
+
+void editsalary(int i)
+
+{
+
+    cout << "Enter new Salary ";
+
+    cin >> emp[i].salary;
+
+}
+
+
+void search()
+
+{
+
+    system("cls");
+
+   
+
+    printf("Welcome To Search Of Employee Database ");
+
+  
+
+    cout << endl;
+
+    cout << endl;
+
+    int jobcode;
+
+    cout << "You Can Search Only By code Of An Employee"<<endl;
+
+    cout << "Enter Code Of An Employee"<<endl;
+
+    cin >> jobcode;
+
+    for (int i = 0; i <= num - 1; i++)
+
+    {
+
+        if (emp[i].code == jobcode)
+
+        {
+
+
+            cout << "     Name     Code     Designation     Years(EXP)     Salary "<<endl;
+
+            cout << "     ------------------------------------------------------    "<<endl;
+
+            cout << setw(13) << emp[i].name;
+
+            cout << setw(6) << emp[i].code;
+
+            cout << setw(15) << emp[i].designation;
+
+            cout << setw(10) << emp[i].exp;
+
+            cout << setw(15) << emp[i].salary;
+
+            cout << endl;
+
+        }
+
+
+    }
+
+    cout << "going to main menu";
+
+    _getch();
+
+
+
+}
+
+
+void sort()
+
+{
+
+    system("cls");
+
+
+
+    printf("Sort The Databse By Code");
+
+
+    void sortmenu();
+
+    void sortname();
+
+    void sortcode();
+
+    void sortdes();
+
+    void sortexp();
+
+    char option;
+
+    void sortsalary();
+
+
+    cout << endl;
+
+    cout << endl;
+
+    sortmenu();
+
+    while ((option = cin.get()) != 'q')
+
+    {
+    switch (option)
+
+        {
+
+        case 'n':
+
+            sortname();
+
+            break;
+
+        case 'c':
+
+            sortcode();
+
+            break;
+
+        case 'd':
+
+            sortdes();
+
+            break;
+
+        case 'e':
+
+            sortexp();
+
+            break;
+
+        case 'a':
+
+            sortsalary();
+
+            break;
+
+        }
+
+        sortmenu();
+
+    }
+
+}
+
+
+
+void sortmenu()
+
+{
+
+    system("cls");
+
+    cout << "          What Do You Want To sort" << endl;
+
+    cout << "          n--------->Name         " << endl;
+
+    cout << "          c--------->Code         "<<endl;
+
+    cout << "          d--------->Designation  "<<endl;
+
+    cout << "          e--------->Experience   "<<endl;
+
+    cout << "          a--------->Salary          "<<endl;
+
+    cout << "          q----->QUIT             "<<endl;
+
+    cout << "   Options Please ---->>>  "<<endl;
+}
+
+
+
+
+void sortname()
+
+{
+
+    system("cls");
+
+    int i, j;
+
+    struct employee temp[max];
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        sortemp1[i] = emp[i];
+
+    }
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        for (j = 0; j <= num - 1; j++)
+
+        {
+
+            if (strcmp(sortemp1[i].name, sortemp1[j].name) <= 0)
+
+            {
+
+                temp[i] = sortemp1[i];
+
+                sortemp1[i] = sortemp1[j];
+
+                sortemp1[j] = temp[i];
+
+            }
+
+        }
+
+    }
+
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+
+        cout << "     Name     Code     Designation     Years(EXP)     Salary "<<endl;
+
+        cout << "     ------------------------------------------------------   "<<endl;
+
+        for (i = 0; i <= num - 1; i++)
+
+        {
+
+            cout << setw(13) << sortemp1[i].name;
+
+            cout << setw(6) << sortemp1[i].code;
+
+            cout << setw(15) << sortemp1[i].designation;
+
+            cout << setw(10) << sortemp1[i].exp;
+
+            cout << setw(15) << sortemp1[i].salary;
+
+            cout << endl;
+
+        }
+
+        cout << "Press Any Key To Go Back";
+
+        _getch();
+
+
+    }
+}
+
+
+void sortcode()
+
+{
+
+    system("cls");
+
+    int i, j;
+
+    struct employee temp[max];
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        sortemp1[i] = emp[i];
+
+    }
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        for (j = 0; j <= num - 1; j++)
+
+        {
+
+            if (sortemp1[i].code < sortemp1[j].code)
+
+            {
+
+                temp[i] = sortemp1[i];
+
+                sortemp1[i] = sortemp1[j];
+
+                sortemp1[j] = temp[i];
+
+            }
+
+        }
+
+    }
+
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+
+        cout << "     Name     Code     Designation     Years(EXP)     Salary " << endl;
+
+        cout << "     ------------------------------------------------------   " << endl;
+
+        for (i = 0; i <= num - 1; i++)
+
+        {
+
+            cout << setw(13) << sortemp1[i].name;
+
+            cout << setw(6) << sortemp1[i].code;
+
+            cout << setw(15) << sortemp1[i].designation;
+
+            cout << setw(10) << sortemp1[i].exp;
+
+            cout << setw(15) << sortemp1[i].salary;
+
+            cout << endl;
+
+        }
+
+        cout << "Press Any Key To Go Back";
+
+        _getch();
+
+
+    }
+}
+
+
+
+void sortdes()
+
+{
+
+    system("cls");
+
+    int i, j;
+
+    struct employee temp[max];
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        sortemp1[i] = emp[i];
+
+    }
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        for (j = 0; j <= num - 1; j++)
+
+        {
+
+            if (strcmp(sortemp1[i].designation, sortemp1[j].designation) <= 0)
+
+            {
+
+                temp[i] = sortemp1[i];
+
+                sortemp1[i] = sortemp1[j];
+
+                sortemp1[j] = temp[i];
+
+            }
+
+        }
+
+    }
+
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+
+        cout << "     Name     Code     Designation     Years(EXP)     Salary " << endl;
+
+        cout << "     ------------------------------------------------------   " << endl;
+
+        for (i = 0; i <= num - 1; i++)
+
+        {
+
+            cout << setw(13) << sortemp1[i].name;
+
+            cout << setw(6) << sortemp1[i].code;
+            
+            cout << setw(15) << sortemp1[i].designation;
+
+            cout << setw(10) << sortemp1[i].exp;
+
+            cout << setw(15) << sortemp1[i].salary;
+
+            cout << endl;
+
+        }
+
+        cout << "Press Any Key To Go Back";
+
+        _getch();
+
+
+    }
+}
+
+
+void sortsalary()
+
+{
+
+    system("cls");
+
+    int i, j;
+
+    struct employee temp[max];
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        sortemp1[i] = emp[i];
+
+    }
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        for (j = 0; j <= num - 1; j++)
+
+        {
+
+            if (sortemp1[i].salary < sortemp1[j].salary)
+
+            {
+
+                temp[i] = sortemp1[i];
+
+                sortemp1[i] = sortemp1[j];
+
+                sortemp1[j] = temp[i];
+
+            }
+
+        }
+
+    }
+
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+
+        cout << "     Name     Code     Designation     Years(EXP)     Salary " << endl;
+
+        cout << "     ------------------------------------------------------   " << endl;
+
+        for (i = 0; i <= num - 1; i++)
+
+        {
+
+            cout << setw(13) << sortemp1[i].name;
+
+            cout << setw(6) << sortemp1[i].code;
+
+            cout << setw(15) << sortemp1[i].designation;
+
+            cout << setw(10) << sortemp1[i].exp;
+
+            cout << setw(15) << sortemp1[i].salary;
+
+            cout << endl;
+
+        }
+
+        cout << "Press Any Key To Go Back";
+
+        _getch();
+
+
+    }
+}
+
+
+
+void sortexp()
+
+{
+
+    system("cls");
+
+    int i, j;
+
+    struct employee temp[max];
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        sortemp1[i] = emp[i];
+
+    }
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+        for (j = 0; j <= num - 1; j++)
+
+        {
+
+            if (sortemp1[i].exp < sortemp1[j].exp)
+
+            {
+
+                temp[i] = sortemp1[i];
+
+                sortemp1[i] = sortemp1[j];
+
+                sortemp1[j] = temp[i];
+
+            }
+
+        }
+
+    }
+
+
+    for (i = 0; i <= num - 1; i++)
+
+    {
+
+
+        cout << "     Name     Code     Designation     Years(EXP)     Salary " << endl;
+
+        cout << "     ------------------------------------------------------   " << endl;
+
+        for (i = 0; i <= num - 1; i++)
+
+        {
+
+            cout << setw(13) << sortemp1[i].name;
+
+            cout << setw(6) << sortemp1[i].code;
+
+            cout << setw(15) << sortemp1[i].designation;
+
+            cout << setw(10) << sortemp1[i].exp;
+
+            cout << setw(15) << sortemp1[i].salary;
+
+            cout << endl;
+
+        }
+
+        cout << "Press Any Key To Go Back";
+
+        _getch();
+
+
+    }
+}
